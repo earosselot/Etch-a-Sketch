@@ -1,3 +1,7 @@
 # Etch-a-Sketch
 
-Project from odinproject.com Foundations course
+Project from [The Odin Project](https://www.theodinproject.com)  
+
+[Foundations path](https://www.theodinproject.com/courses/foundations) - JavaScript
+
+[Assignment](https://www.theodinproject.com/courses/foundations/lessons/etch-a-sketch-project)
