@@ -1,15 +1,26 @@
 #container {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    border: solid 1px black;
+    align-content: stretch;
+    width: 600px;
+    height: 600px;
+    /* background-color: brown; */
+    /* grid-template-columns: repeat(10, auto); */
+    /* grid-template-rows: repeat(10, auto); */
 }
 
-.row {
-    display: flex;
-    flex-direction: row;
+.gridItem {
+    background-color: blueviolet;
+    /* grid-row: span 1; */
+    /* grid-column: span 1; */
+    border: dotted 1px gray;
+    /* height: 100%; */
 }
 
-.item {
-    border-color: aqua;
+.mouseOver {
     background-color: green;
-    border-width: 2px;
+}
+
+.mouseOut {
+    background-color: black;
 }
