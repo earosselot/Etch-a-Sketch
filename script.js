@@ -41,7 +41,9 @@ function mouseOut(e) {
 // RANDOM RGB END
 
 function resetGrid() {
-    gridSize = parseInt(prompt('grid size (max 100): '));
+    do {
+    gridSize = parseInt(prompt('Enter grid size (between 1 and 100): '));
+    } while (isNaN(gridSize) || gridSize < 1 || gridSize > 100 );
     container.innerHTML = '';
     createGrid(gridSize);
 }
