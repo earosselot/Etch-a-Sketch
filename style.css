@@ -13,16 +13,18 @@
     width: 500px;
     height: 500px;
     margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .gridItem {
-    background-color: whitesmoke;
+    background-color: black;
+    opacity: 0;
     border: dotted 1px gray;
 }
 
-.mouseOver {
+/* .mouseOver {
     background-color: gray;
-}
+} */
 
 .mouseOut {
     background-color: black;
@@ -36,7 +38,14 @@
     font-size: 30px;
 }
 
-#reset-btn {
+.bottom-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background: #cf7575ec;
+}
+
+.reset-btn {
 	/* box-shadow: 0px 0px 0px 2px #9fb4f2; */
 	/* background:linear-gradient(to bottom, #7892c2 5%, #476e9e 100%); */
     /* background-color:#7892c2; */
@@ -65,7 +74,7 @@
 }
 
 
-#reset-btn:hover {
+.reset-btn:hover {
 	/* background:linear-gradient(to bottom, #476e9e 5%, #7892c2 100%); */
     /* background-color:#476e9e; */
     background:linear-gradient(to bottom, #c62d1f 5%, #f24537 100%);

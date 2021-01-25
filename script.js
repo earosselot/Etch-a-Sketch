@@ -1,11 +1,20 @@
-function allowPaint(gridItems) {
+// SE LE PUEDEN AGREGAR 3 BOTONES PARA ALTERNAR ENTRE LOS DISTINTOS MODOS
+
+function allowPaint(gridItems, mode) {
     gridItems.forEach(grid_item => {
+        if (mode === 'default'){
+            grid_item.addEventListener('mouseout', mouseOutDefault);    
+        } else if (mode === 'rainbow') {
+            grid_item.addEventListener('mouseout', mouseOutRainbow);
+        } else if (mode === 'opacity'){
+            grid_item.addEventListener('mouseout', mouseOutOpacity);
+        }
         grid_item.addEventListener('mouseover', mouseOver);
-        grid_item.addEventListener('mouseout', mouseOut);
+        // grid_item.addEventListener('mouseout', mouseOut);
     })
 }
 
-function createGrid(grid_size=32) {
+function createGrid(mode, grid_size=15) {
 
     container.style['grid-template-columns'] = `repeat(${grid_size}, auto)`;
     container.style['grid-template-rows'] = `repeat(${grid_size}, auto)`;
@@ -17,42 +26,67 @@ function createGrid(grid_size=32) {
     }
 
     let gridItems = document.querySelectorAll('.gridItem');
-    allowPaint(gridItems);
+    allowPaint(gridItems, mode);
 }
 
 function mouseOver(e) {
     e.target.classList.add('mouseOver');
 }
 
-// BASIC MOUSEOUT
-// function mouseOut(e) {
-//     e.target.classList.add('mouseOut');
-// }
+function mouseOutDefault(e) {
+    e.target.style['opacity'] = '1';
+}
 
-// RANDOM RGB COLOR MOUSEOUT START
 function random255() {
     return Math.floor(Math.random() * 256);
 }
 
-function mouseOut(e) {
+function mouseOutRainbow(e) {
     let color = `rgb(${random255()}, ${random255()}, ${random255()})`;
     e.target.style['background-color'] = color;
+    e.target.style['opacity'] = '1';
 }
-// RANDOM RGB END
 
-function resetGrid() {
+function mouseOutOpacity(e){
+    let opacity = parseFloat(e.target.style['opacity']);
+    if (!opacity) {
+        e.target.style['opacity'] = 0.1;
+    } else if (opacity < 1.0) {
+        opacity = opacity + 0.1;
+        e.target.style['opacity'] = opacity;
+    }
+}
+
+function resetGrid(mode) {
     do {
     gridSize = parseInt(prompt('Enter grid size (between 1 and 100): '));
     } while (isNaN(gridSize) || gridSize < 1 || gridSize > 100 );
     container.innerHTML = '';
-    createGrid(gridSize);
+    createGrid(mode, gridSize);
 }
 
+
 const container = document.querySelector('#container');
-createGrid();
+createGrid('default');
 
-const resetBtn = document.querySelector('#reset-btn');
-resetBtn.addEventListener('click', resetGrid);
+// const resetBtn = document.querySelector('#reset-btn');
+// // resetBtn.addEventListener('click', resetGrid('rainbow'));
+// resetBtn.addEventListener('click', () => {
+//     resetGrid();
+// });
 
-// FALTA AGREGAR LOS OPCIONALES
-// FALTAN COMPROBACIONES Y LIMITES PARA EL PROMPT
+const BnWBtn = document.querySelector('#bnw-btn');
+const rainbowBtn = document.querySelector('#rainbow-btn');
+const opacityBtn = document.querySelector('#opacity-btn');
+
+BnWBtn.addEventListener('click', () => {
+    resetGrid('default');
+});
+
+rainbowBtn.addEventListener('click', () => {
+    resetGrid('rainbow');
+});
+
+opacityBtn.addEventListener('click', () => {
+    resetGrid('opacity');
+});
